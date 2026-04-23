@@ -1,0 +1,4 @@
+image:
+  repository: localhost:31500/tmpclaw/project-shell
+  tag: "1776434668"
+  pullPolicy: Always

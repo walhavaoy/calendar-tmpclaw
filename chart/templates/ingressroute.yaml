@@ -1,0 +1,46 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: calendar-redirect-https
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: calendar
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: "Host(`calendar.tmpclaw.io`) && PathPrefix(`/`)"
+      kind: Rule
+      middlewares:
+        - name: strip-forwarded-user
+        - name: forward-auth
+        - name: cors-mobile
+      services:
+        - name: calendar
+          port: 8080
+  tls:
+    certResolver: letsencrypt
+    domains:
+      - main: calendar.tmpclaw.io
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: calendar-redirect
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: "Host(`calendar.tmpclaw.io`) && PathPrefix(`/`)"
+      kind: Rule
+      middlewares:
+        - name: calendar-redirect-https
+      services:
+        - name: calendar
+          port: 8080
