@@ -1,6 +1,6 @@
 {
   "name": "calendar",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "scripts": {
     "build": "tsc",
@@ -8,6 +8,7 @@
     "dev": "tsx src/index.ts"
   },
   "dependencies": {
+    "fastify": "^4.28.1",
     "pg": "^8.13.1",
     "pino": "^9.6.0"
   },
