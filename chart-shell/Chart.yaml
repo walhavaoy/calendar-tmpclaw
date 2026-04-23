@@ -1,6 +1,6 @@
 apiVersion: v2
 name: calendar-shell
-description: Project shell for calendar application
+description: Calendar shell — IngressRoute and TLS for calendar.tmpclaw.io
 type: application
 version: 0.1.0
-appVersion: "1.0.0"
+appVersion: "0.1.1"

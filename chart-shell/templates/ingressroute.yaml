@@ -1,20 +1,20 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: calendar-shell
+  name: calendar
+  labels:
+    app: calendar
 spec:
   entryPoints:
+    - web
     - websecure
   routes:
-    - match: "Host(`shell.calendar.tmpclaw.io`) && PathPrefix(`/`)"
-      kind: Rule
-      middlewares:
-        - name: strip-forwarded-user
-        - name: forward-auth
+    - kind: Rule
+      match: "Host(`{{ .Values.host }}`) && PathPrefix(`/`)"
       services:
-        - name: calendar-shell
-          port: 3000
+        - name: {{ .Values.serviceName }}
+          port: {{ .Values.servicePort }}
   tls:
     certResolver: letsencrypt
     domains:
-      - main: shell.calendar.tmpclaw.io
+      - main: {{ .Values.host }}

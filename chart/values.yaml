@@ -1,14 +1,18 @@
+replicaCount: 1
+
 image:
   repository: localhost:31500/calendar-tmpclaw/calendar
   tag: latest
   pullPolicy: Always
 
-replicas: 1
+service:
+  port: 8080
 
-resources:
-  requests:
-    cpu: 50m
-    memory: 64Mi
-  limits:
-    cpu: 200m
-    memory: 256Mi
+resources: {}
+
+env:
+  PGHOST: postgres
+  PGPORT: "5432"
+  PGDATABASE: calendar
+  PGUSER: calendar
+  PGPASSWORD: calendar

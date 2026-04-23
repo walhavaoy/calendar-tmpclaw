@@ -11,7 +11,7 @@ import {
   CreateEventInput,
   UpdateEventInput,
   ListEventsFilter,
-} from './db.js';
+} from './db';
 
 const logger = pino({ name: 'calendar-api' });
 
