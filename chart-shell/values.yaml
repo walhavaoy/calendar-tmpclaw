@@ -1,3 +1,10 @@
+image:
+  repository: localhost:31500/tmpclaw/project-shell
+  tag: "1776585047"
+  pullPolicy: Always
+
 host: calendar.tmpclaw.io
 serviceName: calendar
 servicePort: 8080
+
+shellHost: shell.calendar.tmpclaw.io

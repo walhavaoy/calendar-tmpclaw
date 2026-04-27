@@ -18,3 +18,26 @@ spec:
     certResolver: letsencrypt
     domains:
       - main: {{ .Values.host }}
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: calendar-shell
+  labels:
+    app: calendar-shell
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - kind: Rule
+      match: "Host(`{{ .Values.shellHost }}`) && PathPrefix(`/`)"
+      middlewares:
+        - name: strip-forwarded-user
+        - name: forward-auth
+      services:
+        - name: calendar-shell
+          port: 3000
+  tls:
+    certResolver: letsencrypt
+    domains:
+      - main: {{ .Values.shellHost }}
