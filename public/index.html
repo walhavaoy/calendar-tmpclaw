@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Calendar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="hamburger" data-action="toggle-sidebar" aria-label="Toggle sidebar">&#9776;</button>
+    <h1>Family Calendar</h1>
+    <button class="nav-btn" data-action="prev-month" data-testid="calendar-nav-prev" aria-label="Previous month">&lsaquo;</button>
+    <span class="month-lbl" data-ref="month-label"></span>
+    <button class="nav-btn" data-action="next-month" data-testid="calendar-nav-next" aria-label="Next month">&rsaquo;</button>
+    <span class="spacer"></span>
+    <span class="user-info" data-ref="user-info"></span>
+    <button class="logout" data-action="logout">logout</button>
+  </header>
+
+  <aside class="sidebar" data-ref="sidebar">
+    <div class="heading">Calendars</div>
+    <div data-ref="calendar-list"></div>
+    <button class="new-cal" data-action="show-new-calendar" data-testid="calendar-sidebar-add">+ New Calendar</button>
+    <div class="swatch-form hidden" data-ref="new-calendar-form">
+      <input type="text" placeholder="Calendar name" data-ref="new-cal-name" data-testid="calendar-sidebar-name-input">
+      <div class="swatches" data-ref="swatches"></div>
+      <button data-action="save-calendar" data-testid="calendar-sidebar-save">Save</button>
+    </div>
+  </aside>
+
+  <div class="sidebar-overlay" data-action="close-sidebar"></div>
+
+  <main class="main">
+    <div class="dow">
+      <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+    </div>
+    <div class="grid" data-ref="grid"></div>
+  </main>
+
+  <button class="fab" data-action="new-event" aria-label="New event">+</button>
+
+  <div class="modal-overlay hidden" data-testid="calendar-modal-overlay" data-ref="modal-overlay">
+    <div class="modal" data-ref="modal">
+      <div class="modal-head">
+        <h2 data-ref="modal-title">New Event</h2>
+        <button class="close" data-action="close-modal" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="fg">
+          <label for="evt-title">Title</label>
+          <input type="text" id="evt-title" data-testid="calendar-modal-title" data-ref="modal-evt-title">
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label for="evt-calendar">Calendar</label>
+            <select id="evt-calendar" data-testid="calendar-modal-calendar-select" data-ref="modal-evt-calendar"></select>
+          </div>
+          <div class="fg">
+            <label for="evt-date">Date</label>
+            <input type="date" id="evt-date" data-testid="calendar-modal-date" data-ref="modal-evt-date">
+          </div>
+        </div>
+        <div class="allday">
+          <input type="checkbox" id="evt-allday" data-testid="calendar-modal-allday" data-ref="modal-evt-allday">
+          <label for="evt-allday">All day</label>
+        </div>
+        <div class="frow time-row" data-ref="time-row">
+          <div class="fg">
+            <label for="evt-start">Start</label>
+            <input type="time" id="evt-start" data-testid="calendar-modal-start" data-ref="modal-evt-start">
+          </div>
+          <div class="fg">
+            <label for="evt-end">End</label>
+            <input type="time" id="evt-end" data-testid="calendar-modal-end" data-ref="modal-evt-end">
+          </div>
+        </div>
+        <div class="fg">
+          <label for="evt-location">Location</label>
+          <input type="text" id="evt-location" data-ref="modal-evt-location">
+        </div>
+        <div class="fg">
+          <label for="evt-notes">Description</label>
+          <textarea id="evt-notes" data-ref="modal-evt-notes"></textarea>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button class="del hidden" data-action="delete-event" data-testid="calendar-modal-delete">Delete</button>
+        <button class="can" data-action="close-modal" data-testid="calendar-modal-cancel">Cancel</button>
+        <button class="sav" data-action="save-event" data-testid="calendar-modal-save">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

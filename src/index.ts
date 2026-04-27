@@ -1,3 +1,5 @@
+import path from 'node:path';
+import fastifyStatic from '@fastify/static';
 import Fastify from 'fastify';
 import pino from 'pino';
 import {
@@ -19,6 +21,13 @@ const PORT = Number(process.env['PORT'] ?? 8080);
 const HOST = process.env['HOST'] ?? '0.0.0.0';
 
 const app = Fastify({ logger: true });
+
+/** Serve static files from public/ */
+app.register(fastifyStatic, {
+  root: path.join(__dirname, '..', 'public'),
+  prefix: '/',
+  wildcard: false,
+});
 
 /** Health check */
 app.get('/healthz', async (_req, reply) => {
