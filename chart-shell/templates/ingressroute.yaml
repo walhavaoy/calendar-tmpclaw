@@ -1,27 +1,6 @@
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
-  name: calendar
-  labels:
-    app: calendar
-spec:
-  entryPoints:
-    - web
-    - websecure
-  routes:
-    - kind: Rule
-      match: "Host(`{{ .Values.host }}`) && PathPrefix(`/`)"
-      services:
-        - name: {{ .Values.serviceName }}
-          port: {{ .Values.servicePort }}
-  tls:
-    certResolver: letsencrypt
-    domains:
-      - main: {{ .Values.host }}
----
-apiVersion: traefik.io/v1alpha1
-kind: IngressRoute
-metadata:
   name: calendar-shell
   labels:
     app: calendar-shell

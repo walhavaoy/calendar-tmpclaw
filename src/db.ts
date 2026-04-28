@@ -45,7 +45,7 @@ export interface ListEventsFilter {
 }
 
 const poolConfig: PoolConfig = {
-  host: process.env['PGHOST'] ?? 'localhost',
+  host: process.env['PGHOST'] ?? 'postgres.tmpclaw.svc.cluster.local',
   port: Number(process.env['PGPORT'] ?? 5432),
   database: process.env['PGDATABASE'] ?? 'calendar',
   user: process.env['PGUSER'] ?? 'calendar',
