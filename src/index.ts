@@ -26,7 +26,6 @@ const app = Fastify({ logger: true });
 app.register(fastifyStatic, {
   root: path.join(__dirname, '..', 'public'),
   prefix: '/',
-  wildcard: false,
 });
 
 /** Health check */
